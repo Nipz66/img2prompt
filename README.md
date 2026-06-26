@@ -1,78 +1,80 @@
-# Image → Prompt 🖼️→📝
+# Image → Prompt
 
-Image ekak AI generation prompt ekakata convert karana tool ekak. **Groq API** (free, super fast) vision use karanawa.
-Web app eka + Chrome extension eka — dekama mehe thiyenawa.
+A tool that converts any image into a ready-to-use AI image generation prompt. Powered by the **Groq API** (free & fast) vision models.
 
-Model: `qwen/qwen3.6-27b` (vision) · fallback `llama-4-scout`
+Includes a **web app** and a **Chrome extension** — both are in this repo.
 
 ---
 
-## 1. Setup (ekapāra witharai)
+## 1. Setup
 
-### Step 1 — Node packages install karanna
+### Step 1 — Install dependencies
 ```bash
 cd img2prompt
 npm install
 ```
 
-### Step 2 — Groq API key eka danna (FREE)
-1. https://console.groq.com/keys → key ekak hadanna (free, card ඕනෙ näha)
-2. `.env.example` eka copy karala `.env.local` widiyata name karanna:
+### Step 2 — Add your Groq API key (free)
+1. Go to [https://console.groq.com/keys](https://console.groq.com/keys) and create a free API key (no credit card required)
+2. Copy the example env file:
 ```bash
 cp .env.example .env.local
 ```
-3. Eke key eka daanna:
+3. Open `.env.local` and paste your key:
 ```
 GROQ_API_KEY=gsk_xxxxxxxxxxxxx
 ```
 
 ---
 
-## 2. Web app eka run karanna
+## 2. Run the web app
 ```bash
 npm run dev
 ```
-Browser eke open karanna: **http://localhost:3000**
+Open your browser at **http://localhost:3000**
 
-Use karana widiya:
-- Image ekak **drag & drop**, or
-- **Click** karala browse, or
-- **Ctrl/Cmd + V** walin paste, or
-- Image **URL** ekak paste
+You can provide an image in any of these ways:
+- **Drag & drop** an image onto the upload area
+- **Click** to browse and select a file
+- **Ctrl/Cmd + V** to paste from clipboard
+- Paste a direct **image URL**
 
-"Generate prompt" click → prompt + negative prompt + breakdown + tags.
+Click **Generate prompt** to get the prompt, negative prompt, style breakdown, and suggested tags.
 
 ---
 
-## 3. Chrome extension eka install karanna
+## 3. Install the Chrome extension
 
-1. Chrome → `chrome://extensions`
-2. **Developer mode** ON (උඩ දකුණෙන්)
-3. **Load unpacked** → `img2prompt/extension` folder eka select karanna
-4. Web app eka (`npm run dev`) run wෙලා thiyenna ඕනේ
+1. Open Chrome and go to `chrome://extensions`
+2. Enable **Developer mode** (toggle in the top right)
+3. Click **Load unpacked** and select the `img2prompt/extension` folder
+4. Make sure the web app is running (`npm run dev`) in the background
 
-Dän ඕනෑම image ekak මත **right-click → "Generate AI prompt from image"** →
-auto-open wෙලා prompt eka generate wෙනawa. Pinterest, Behance — ඕනෑම තැනක.
+Now you can **right-click any image** on any website → **"Generate AI prompt from image"** — the app will open automatically and generate the prompt. Works on Pinterest, Behance, and anywhere else.
 
 ---
 
 ## 4. Production deploy (optional)
 
-Netlify/Vercel ekata deploy karoth:
-- `extension/background.js` eke `APP_URL` eka deployed URL ekata change karanna
-- Deploy platform eke `GROQ_API_KEY` eka environment variable ekak widiyata danna
-- `extension/manifest.json` eke `host_permissions` eka deployed domain ekata update karanna
+If you deploy to Vercel or Netlify:
+- Update `APP_URL` in `extension/background.js` to your deployed URL
+- Add `GROQ_API_KEY` as an environment variable in your deploy platform settings
+- Update `host_permissions` in `extension/manifest.json` to match your deployed domain
 
 ---
 
-## Groq gena
-- **Free tier eka generous** — daily limits ekak thiyenawa, but personal use ekata hොඳට ඇති
-- **Super fast** — 500+ tokens/sec, Claude/GPT walata වඩා වේගවත්
-- Vision cost eka godak adui (free tier eke gෙවෙන්නෙ näha limit ඇතුළත)
+## About Groq
 
-### Limits balaganna ඕනෑ දේවල්
-- Base64 (upload) image: max **4MB**
-- URL image: max **20MB**, 33 megapixels
-- Image ekකට max 5 images / request
+- **Free tier** — generous daily limits, more than enough for personal use
+- **Very fast** — 500+ tokens/sec, significantly faster than OpenAI or Anthropic
+- **Low cost** — vision processing is cheap, well within the free tier for normal usage
 
-Built with Groq · Innowebic Technologies
+### Image limits
+| Type | Max size |
+|------|----------|
+| Uploaded image (base64) | 4 MB |
+| URL image | 20 MB / 33 megapixels |
+
+---
+
+Built with Groq
